@@ -1,5 +1,5 @@
-- title "New <%= singular_name%>"
+- title t("New <%= singular_name%>")
 
-= render 'form'
+= render 'form', :submit => t('Create')
 
-= link_to 'Back', <%= plural_name %>_path
+= link_to t('Back'), <%= plural_name %>_path

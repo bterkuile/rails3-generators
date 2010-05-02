@@ -3,8 +3,8 @@
 
 <% for attribute in attributes -%>
   .field
-    = f.label :<%= attribute.name %>
+    = f.label :<%= attribute.name %>, t("<%= plural_name %>.<%= attribute.name %>")
     = f.<%= attribute.field_type %> :<%= attribute.name %>
 <% end -%>
   .actions
-    = f.submit @submit || 'Save'
+    = f.submit @submit || t('Save')
