@@ -7,7 +7,7 @@ module Haml
       extend TemplatePath
 
       def copy_layout_file
-        return unless options[:layout]
+        return unless options[:layout] && false # Disable layouts
         template "layout.haml.erb",
                  File.join("app/views/layouts", controller_class_path, "#{controller_file_name}.html.haml")
       end
