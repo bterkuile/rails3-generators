@@ -2,6 +2,34 @@
 
 Rails 3 compatible generators for DataMapper, Haml, Factory-girl, Authlogic, Mongomapper, and Mongoid
 
+== Explanation
+This is a fork from the indirect rails3-generators at http://github.com/indirect/rails3-generators
+Unlike these generators, this repository will not be as general or compatible as the source, but 
+will speed up scaffolding a lot when some conventions are used. The main changes are:
+* many strings from the scaffold command with haml now link to helper methods, in stead of being just stings
+* The title is now done using the title helper method as used by Ryan Bates
+
+Future plans:
+* support for a --namespace=admin functionality. I believe in namespaced controllers and views, but not in 
+  namespaced models, so admin/... is not my way of implementing (yet)
+* Automatically check for existing translations on haml view generation (en.yml)
+* Implement error messages like explained in railscasts.com#212
+
+Also soon I will add the used helpers to rails which can be overwritten in you own helpers. These are
+* title
+* edit_text
+* show_text
+* destroy_text
+* index_text
+* update_button_text
+* create_button_text
+Now you can replace all your scaffolding links with images if you wish without a blink.
+Assumptions for this repo:
+* Your tables/columns are in English
+* You will use internationalisation (Easy to get rid of, but built-in by default)
+
+Oh and... do not use before June (2010), because it will need some more work.
+
 == Note on Patches/Pull Requests
 
 Fork the repo, add a generator, send a pull request. Pretty simple.
