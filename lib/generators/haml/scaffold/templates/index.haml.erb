@@ -2,24 +2,26 @@
 - if @<%= plural_name %>.any?
   %table
     %tr
-  <% for attribute in attributes -%>
-      %th= t("<%= plural_name %>.<%= attribute.name %>")
-  <% end -%>
+<% for attribute in attributes -%>
+      %th= t("<%= plural_name %>.<%= attribute.human_name %>")
+<% end -%>
       %th
       %th
       %th
   
     - @<%= plural_name %>.each do |<%= singular_name %>|
-      %tr
-  <% for attribute in attributes -%>
+      %tr<% link_created = false %>
+<% for attribute in attributes -%>
+<% if !link_created && %w{name title}.include?(attribute.name) -%>
+        %td= link_to <%= singular_name %>.<%= attribute.name %>, <%= options[:admin] ? 'admin_' : '' %><%= singular_name %>_path(<%= singular_name %>)
+<% link_created = true; else -%>
         %td= <%= singular_name %>.<%= attribute.name %>
-  <% end -%>
-        %td= link_to t('Show'), <%= singular_name %>
-        %td= link_to t('Edit'), edit_<%= singular_name %>_path(<%= singular_name %>)
-        %td= link_to t('Destroy'), <%= singular_name %>, :confirm => t('Are you sure'), :method => :delete
+<% end end -%>
+        %td= link_to edit_text, edit_<%= options[:admin] ? 'admin_' : '' %><%= singular_name %>_path(<%= singular_name %>)
+        %td= link_to destroy_text, <%= options[:admin] ? "[:admin, #{singular_name}]" : singular_name %>, :confirm => are_you_sure(@<%= singular_name %>), :method => :delete
 - else
   %h3= t("No <%= plural_name %>")
 
 %br
 
-= link_to t('New <%= singular_name %>'), new_<%= singular_name %>_path
+= link_to new_text(@<%= singular_name %>), new_<%= options[:admin] ? 'admin_' : '' %><%= singular_name %>_path

@@ -1,9 +1,10 @@
+- title t("Showing <%= singular_name %>")
 <% for attribute in attributes -%>
-%p
-  %b <%= attribute.human_name %>:
+.show_field
+  %strong= t("<%= plural_name %>.<%= attribute.human_name %>")
   = @<%= singular_name %>.<%= attribute.name %>
 <% end -%>
 
-= link_to 'Edit', edit_<%= singular_name %>_path(@<%= singular_name %>)
+= link_to edit_text, edit_<%= options[:admin] ? 'admin_' : '' %><%= singular_name %>_path(@<%= singular_name %>)
 \|
-= link_to 'Back', <%= plural_name %>_path
+= link_to index_text, <%= options[:admin] ? 'admin_' : '' %><%= plural_name %>_path

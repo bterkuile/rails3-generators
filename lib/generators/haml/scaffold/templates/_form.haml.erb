@@ -1,10 +1,10 @@
-- form_for @<%= singular_name %> do |f|
+- form_for <%= options[:admin] ? "[:admin, @#{singular_name}]" : "@#{singular_name}" %> do |f|
   = render 'shared/error_messages', :target => @<%= singular_name %>
 
 <% for attribute in attributes -%>
   .field
-    = f.label :<%= attribute.name %>, t("<%= plural_name %>.<%= attribute.name %>")
+    = f.label :<%= attribute.name %>, t("<%= plural_name %>.<%= attribute.human_name %>")
     = f.<%= attribute.field_type %> :<%= attribute.name %>
 <% end -%>
   .actions
-    = f.submit @submit || t('Save')
+    = f.submit @submit || update_button_text

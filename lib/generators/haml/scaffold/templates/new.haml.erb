@@ -1,5 +1,5 @@
 - title t("New <%= singular_name%>")
 
-= render 'form', :submit => t('Create')
+= render 'form', :submit => create_button_text
 
-= link_to t('Back'), <%= plural_name %>_path
+= link_to index_text, <%= options[:admin] ? 'admin_' : '' %><%= plural_name %>_path

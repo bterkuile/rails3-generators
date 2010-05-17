@@ -1,7 +1,7 @@
 - title t("Editing <%= singular_name %>")
 
-= render 'form', :submit => t('Update')
+= render 'form', :submit => update_button_text
 
-= link_to t('Show'), @<%= singular_name %>
+= link_to show_text, <%= options[:admin] ? "[:admin, @#{singular_name}]": "@#{singular_name}" %>
 \|
-= link_to t('Index'), <%= plural_name %>_path
+= link_to index_text, <%= options[:admin] ? 'admin_' : '' %><%= plural_name %>_path
