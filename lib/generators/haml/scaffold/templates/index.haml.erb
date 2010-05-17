@@ -1,6 +1,6 @@
 - title t("Listing <%= plural_name %>")
 - if @<%= plural_name %>.any?
-  %table
+  %table.index-table
     %tr
 <% for attribute in attributes -%>
       %th= t("<%= plural_name %>.<%= attribute.human_name %>")
