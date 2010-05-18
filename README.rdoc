@@ -24,6 +24,7 @@ Also soon I will add the used helpers to rails which can be overwritten in you o
 * index_text
 * update_button_text
 * create_button_text
+* boolean_text
 Now you can replace all your scaffolding links with images if you wish without a blink.
 Assumptions for this repo:
 * Your tables/columns are in English
@@ -53,10 +54,10 @@ but models not. An ugly temporary fix is the support for a namespace option. Thi
 In this case the views will support links for namespaces. An action list for myself for this case:
 * move app/views/pages => app/views/admin/pages
 * move app/controllers/pages_controller.rb to app/controllers/admin/
-* Open the model file
-** Add Admin:: before the class definitions on the first line
-** make the redirect to [:admin, @page] in the create/update actions
-** make the redirect to admin_pages_url in the destroy action
+* Open the controller file (app/controllers/admin/pages_controller.rb)
+  * Add Admin:: before the class definitions on the first line
+  * make the redirect to [:admin, @page] in the create/update actions
+  * make the redirect to admin_pages_url in the destroy action
 * Ensure the proper routes
    namespace :admin do
      resources :pages
