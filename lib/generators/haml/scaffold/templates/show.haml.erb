@@ -1,10 +1,14 @@
-- title t("Showing <%= singular_name %>")
+- title t("Show title", :scope => [:<%= plural_name %>])
+
 <% for attribute in attributes -%>
 .show_field
   %strong= t("<%= plural_name %>.<%= attribute.human_name %>")
+<% if attribute.field_type == :check_box -%>
+  = boolean_text @<%= singular_name %>.<%= attribute.name %>
+<% else -%>
   = @<%= singular_name %>.<%= attribute.name %>
-<% end -%>
+<% end end -%>
 
-= link_to edit_text, edit_<%= options[:admin] ? 'admin_' : '' %><%= singular_name %>_path(@<%= singular_name %>)
+= link_to edit_text, edit_<%= options[:namespace] ? "#{options[:namespace]}_" : '' %><%= singular_name %>_path(@<%= singular_name %>)
 \|
-= link_to index_text, <%= options[:admin] ? 'admin_' : '' %><%= plural_name %>_path
+= link_to index_text, <%= options[:namespace] ? "#{options[:namespace]}_" : '' %><%= plural_name %>_path

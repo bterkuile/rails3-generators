@@ -8,15 +8,16 @@ Unlike these generators, this repository will not be as general or compatible as
 will speed up scaffolding a lot when some conventions are used. The main changes are:
 * many strings from the scaffold command with haml now link to helper methods, in stead of being just stings
 * The title is now done using the title helper method as used by Ryan Bates
-
-Future plans:
-* support for a --namespace=admin functionality. I believe in namespaced controllers and views, but not in 
-  namespaced models, so admin/... is not my way of implementing (yet)
-* Automatically check for existing translations on haml view generation (en.yml)
-* Implement error messages like explained in railscasts.com#212
+== Getting ready
+To fully use the features of these generators you should have the following:
+* A yield :title somewhere in your layout
+* a shared/_error_messages partial (A default is provided)
+* Add the default translations given in this README to your config/locales/en.yml file
+* Add the generated translations after each scaffold
 
 Also soon I will add the used helpers to rails which can be overwritten in you own helpers. These are
 * title
+* new_text
 * edit_text
 * show_text
 * destroy_text
@@ -28,7 +29,39 @@ Assumptions for this repo:
 * Your tables/columns are in English
 * You will use internationalisation (Easy to get rid of, but built-in by default)
 
-Oh and... do not use before June (2010), because it will need some more work.
+== Standard translation
+The following translation strings are used. Change it using your own helper, or in the translation file:
+  Errors title:
+    one: one error prohibited this record from being saved
+    other: "{{count}} errors prohibited this record from being saved"
+  boolean true: "yes"
+  boolean false: "no"
+  New: New
+  Edit: Edit
+  Show: Show
+  Back: Back
+  Delete: Delete
+  Create: Create
+  Save: Save
+  Are you sure: Are you sure?
+== Namespaces
+In the standard behaviour a namespace kind of thing can be achieved by using a scaffold statement like:
+ rails g scaffold admin/modelname attribute:attribute_type
+This however does not in a required result. In my opinion controllers and views should support namespaces,
+but models not. An ugly temporary fix is the support for a namespace option. This can be used for example:
+ rails g scaffold Page name:string parent_id:integer --namespace=admin
+In this case the views will support links for namespaces. An action list for myself for this case:
+* move app/views/pages => app/views/admin/pages
+* move app/controllers/pages_controller.rb to app/controllers/admin/
+* Open the model file
+** Add Admin:: before the class definitions on the first line
+** make the redirect to [:admin, @page] in the create/update actions
+** make the redirect to admin_pages_url in the destroy action
+* Ensure the proper routes
+   namespace :admin do
+     resources :pages
+   end
+* And don't forget to migrate :)
 
 == Note on Patches/Pull Requests
 
