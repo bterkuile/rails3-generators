@@ -1,5 +1,5 @@
-- title t("Show title", :scope => [:<%= plural_name %>])
+- title t("New title", :scope => [:<%= plural_name %>])
 
 = render 'form', :submit => create_button_text
 
-= link_to index_text, <%= options[:namespace] ? "#{options[:namespace]}_" : '' %><%= plural_name %>_path
+= link_to link_to_index_content(:<%= singular_name %>), <%= options[:namespace] ? "#{options[:namespace]}_" : '' %><%= plural_name %>_path

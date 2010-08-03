@@ -4,19 +4,19 @@ module GeneratorsViewHelpers
       content_tag(:h1, str)
     end
   end
-  def new_text(obj = nil)
+  def link_to_new_content(obj)
     t('New')
   end
-  def edit_text(obj = nil)
+  def link_to_edit_content(obj = nil)
     t('Edit')
   end
-  def show_text(obj = nil)
+  def link_to_show_content(obj = nil)
     t('Show')
   end
-  def index_text
+  def link_to_index_content(singular_name)
     t('Back')
   end
-  def destroy_text(obj = nil)
+  def link_to_destroy_content(obj = nil)
     t('Delete')
   end
   def update_button_text(obj = nil)

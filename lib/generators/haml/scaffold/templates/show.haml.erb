@@ -1,14 +1,15 @@
 - title t("Show title", :scope => [:<%= plural_name %>])
+- language_scope = [:activerecord, :attributes, :<%= singular_name%>]
 
 <% for attribute in attributes -%>
 .show_field
-  %strong= t("<%= plural_name %>.<%= attribute.human_name %>")
+  %strong= t(:<%= attribute.name %>, :scope => language_scope)
 <% if attribute.field_type == :check_box -%>
   = boolean_text @<%= singular_name %>.<%= attribute.name %>
 <% else -%>
   = @<%= singular_name %>.<%= attribute.name %>
 <% end end -%>
 
-= link_to edit_text, edit_<%= options[:namespace] ? "#{options[:namespace]}_" : '' %><%= singular_name %>_path(@<%= singular_name %>)
+= link_to link_to_edit_content(@<%= singular_name %>), edit_<%= options[:namespace] ? "#{options[:namespace]}_" : '' %><%= singular_name %>_path(@<%= singular_name %>)
 \|
-= link_to index_text, <%= options[:namespace] ? "#{options[:namespace]}_" : '' %><%= plural_name %>_path
+= link_to link_to_index_content(:<%= singular_name %>), <%= options[:namespace] ? "#{options[:namespace]}_" : '' %><%= plural_name %>_path

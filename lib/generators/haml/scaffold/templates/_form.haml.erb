@@ -3,7 +3,7 @@
 
 <% for attribute in attributes -%>
   .field
-    = f.label :<%= attribute.name %>, t("<%= attribute.human_name %>", :scope => [:<%= plural_name %>])
+    = f.label :<%= attribute.name %>
     = f.<%= attribute.field_type %> :<%= attribute.name %>
 <% end -%>
   .actions

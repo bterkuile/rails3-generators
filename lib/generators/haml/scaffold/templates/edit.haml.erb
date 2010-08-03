@@ -2,6 +2,6 @@
 
 = render 'form', :submit => update_button_text
 
-= link_to show_text, <%= options[:namespace] ? "[:#{options[:namespace]}, @#{singular_name}]" : "@#{singular_name}" %>
+= link_to link_to_show_content(@<%= singular_name %>), <%= options[:namespace] ? "[:#{options[:namespace]}, @#{singular_name}]" : "@#{singular_name}" %>
 \|
-= link_to index_text, <%= options[:namespace] ? "#{options[:namespace]}_" : '' %><%= plural_name %>_path
+= link_to link_to_index_content(:<%= singular_name %>), <%= options[:namespace] ? "#{options[:namespace]}_" : '' %><%= plural_name %>_path

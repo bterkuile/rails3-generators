@@ -16,16 +16,21 @@ module Haml
       
       def copy_view_files
         @scaffold_translations = []
+        @attribute_translations = []
         views = available_views
         views.delete("index") if options[:singleton]
         views.each do |view|
           template "#{view}.haml.erb", File.join("app/views", controller_file_path, "#{view}.html.haml")
         end
-        puts "\nTranslations:\n  #{plural_name}:\n    " + @scaffold_translations.join("\n    ") + "\n\n"
+        puts "\nTranslations:\n  #{plural_name}:\n    " + @scaffold_translations.join("\n    ") + "\n\n  activerecord:\n    models:\n      #{singular_name}: #{singular_name.humanize}\n    attributes:\n      #{singular_name}:\n        " + @attribute_translations.join("\n        ") + "\n\n"
       end
       private
       def add_scaffold_translation(t)
         @scaffold_translations << t
+      end
+
+      def add_attribute_translation(t)
+        @attribute_translations << t
       end
 
     end
