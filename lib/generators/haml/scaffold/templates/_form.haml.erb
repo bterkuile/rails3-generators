@@ -1,4 +1,4 @@
-- form_for <%= options[:namespace] ? "[:#{options[:namespace]}, @#{singular_name}]" : "@#{singular_name}" %> do |f|
+= form_for <%= options[:namespace] ? "[:#{options[:namespace]}, @#{singular_name}]" : "@#{singular_name}" %> do |f|
   = render 'shared/error_messages', :target => @<%= singular_name %>
 
 <% for attribute in attributes -%>

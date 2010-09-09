@@ -2,9 +2,9 @@
 - language_scope = [:activerecord, :attributes, :<%= singular_name%>]
 <%- add_scaffold_translation("Index title: Listing #{plural_name}") -%>
 <%- add_scaffold_translation("None found: No #{plural_name}") -%>
-<%- add_scaffold_translation("New title: Showing #{singular_name}") -%>
-<%- add_scaffold_translation("Show title: Showing #{singular_name}") -%>
-<%- add_scaffold_translation("Edit title: Showing #{singular_name}") -%>
+<%- add_scaffold_translation("New title: New #{singular_name}") -%>
+<%- add_scaffold_translation("Show title: #{singular_name}") -%>
+<%- add_scaffold_translation("Edit title: Edit #{singular_name}") -%>
 - if @<%= plural_name %>.any?
   %table.index-table
     %thead
